@@ -14,7 +14,6 @@ export interface Context {
   sidebar: boolean;
   setSidebar: React.Dispatch<React.SetStateAction<boolean>>;
 }
-
 export const AppContext = createContext<Context | null>(null);
 
 const AppContextProvider: React.FC<{ children: React.ReactNode }> = ({

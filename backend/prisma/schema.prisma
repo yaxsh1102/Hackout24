@@ -12,3 +12,28 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model Employee {
+  id       String   @id @default(uuid())
+  email    String   @unique
+  name     String
+  password String
+  age      String
+  area     String
+  city     String
+  state    String
+  country  String
+  Farmer   Farmer[]
+}
+
+model Farmer {
+  id         String   @id @default(uuid())
+  employeeId String   @unique
+  name       String
+  area       String
+  city       String
+  state      String
+  number     String
+  location   String[]
+  Employee   Employee @relation(fields: [employeeId], references: [id])
+}
