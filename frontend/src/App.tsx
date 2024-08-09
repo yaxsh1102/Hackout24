@@ -1,12 +1,15 @@
 import "./App.css";
-import { BrowserRouter, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import VirtualTour from "./components/VirtualTour";
 
 function App() {
-	return (
-		<BrowserRouter>
-			<Routes></Routes>
-		</BrowserRouter>
-	);
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/virtual-tour" element={<VirtualTour />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
 export default App;
