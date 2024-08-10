@@ -5,14 +5,14 @@ export const usePoly = (coordinates: string) => {
   const [id, setId] = useState("");
   const apiKey = import.meta.env.VITE_API_KEY;
   const coords = coordinates.split(",");
-  const lat = [
+  const lon = [
     parseFloat(coords[1]),
     parseFloat(coords[3]),
     parseFloat(coords[5]),
     parseFloat(coords[7]),
     parseFloat(coords[9]),
   ];
-  const lon = [
+  const lat = [
     parseFloat(coords[0]),
     parseFloat(coords[2]),
     parseFloat(coords[4]),
@@ -53,7 +53,6 @@ export const usePoly = (coordinates: string) => {
       )
       .then((response) => {
         setId(response.data.id);
-        console.log(response.data.id);
       })
       .catch((error) => {
         console.log(error);
