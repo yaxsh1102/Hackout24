@@ -105,6 +105,11 @@ const Sidebar: React.FC = () => {
                   setUser({
                     name: "",
                     email: "",
+                    age: "",
+                    area: "",
+                    city: "",
+                    state: "",
+                    country: "",
                   });
                   navigate("/");
                   setSidebar(false);
