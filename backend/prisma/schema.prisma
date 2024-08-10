@@ -35,10 +35,9 @@ model Farmer {
   city       String
   state      String
   number     String
-  location   String[]
+  location   String
   Employee   Employee @relation(fields: [employeeId], references: [id])
   Project    Project?
-  projectId  String
 }
 
 model Project {

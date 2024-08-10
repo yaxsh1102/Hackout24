@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "Farmer" ALTER COLUMN "location" SET NOT NULL,
+ALTER COLUMN "location" SET DATA TYPE TEXT;
