@@ -7,22 +7,26 @@ import Profile from "./pages/Profile";
 import Pricing from "./pages/Pricing";
 import CreateProject from "./pages/CreateProject";
 import SetProfile from "./pages/SetProfile";
+import MyProjects from "./pages/MyProjects";
+import ProjectInfo from "./pages/ProjectInfo";
 
 function App() {
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/virtual-tour" element={<VirtualTour />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/signin" element={<Signin />} />
-        <Route path="/pricing" element={<Pricing />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/setProfile" element={<SetProfile />} />
-        <Route path="/create-project" element={<CreateProject />} />
-      </Routes>
-    </BrowserRouter>
-  );
+	return (
+		<BrowserRouter>
+			<Routes>
+				<Route path="/" element={<Home />} />
+				<Route path="/virtual-tour" element={<VirtualTour />} />
+				<Route path="/signup" element={<Signup />} />
+				<Route path="/signin" element={<Signin />} />
+				<Route path="/pricing" element={<Pricing />} />
+				<Route path="/profile" element={<Profile />} />
+				<Route path="/setProfile" element={<SetProfile />} />
+				<Route path="/create-project" element={<CreateProject />} />
+				<Route path="/myprojects" element={<MyProjects />} />
+				<Route path="/myprojects/:projectId" element={<ProjectInfo />} />
+			</Routes>
+		</BrowserRouter>
+	);
 }
 
 export default App;

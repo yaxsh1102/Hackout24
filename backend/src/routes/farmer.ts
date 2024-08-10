@@ -64,9 +64,10 @@ farmerRouter.post("/createFarmer", async (c) => {
 			});
 		} catch (error) {
 			console.log(error);
+			c.status(500);
 			return c.json({
 				error: error,
-				message: "error while creating userrrrr",
+				message: "error while creating farmer",
 			});
 		}
 	} else {
@@ -75,4 +76,32 @@ farmerRouter.post("/createFarmer", async (c) => {
 			message: result.error.issues[0].message,
 		});
 	}
+});
+
+farmerRouter.get("/getFarmers", async (c) => {
+	const prisma = new PrismaClient({
+		datasourceUrl: c.env?.DATABASE_URL,
+	}).$extends(withAccelerate());
+
+	const authHeader = c.req.header("Authorization");
+	if (!authHeader) {
+		return c.json({
+			message: null,
+		});
+	}
+	const user = await verify(authHeader, c.env.JWT_SECRET);
+	c.set("userId", "" + user.id);
+	const farmer = await prisma.farmer.findMany({
+		where: {
+			employeeId: c.get("userId"),
+		},
+	});
+	if (farmer) {
+		return c.json({
+			farmer: farmer,
+		});
+	}
+	return c.json({
+		message: null,
+	});
 });
