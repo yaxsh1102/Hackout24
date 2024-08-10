@@ -42,7 +42,7 @@ const ProfileInputs = () => {
 
     try {
       const res = await axios.put(
-        `${BACKEND_URL}/api/v1/user/updateUser`,
+        `${BACKEND_URL}/api/v1/user/updateProfile`,
         userInput,
         {
           headers: headers,
@@ -98,16 +98,16 @@ const ProfileInputs = () => {
   return (
     <>
       {loading ? (
-        <div className="w-screen h-full p-6 bg-gray-800 flex items-center mt-16 justify-center">
+        <div className="w-screen min-h-full p-6 bg-white flex items-center mt-12  justify-center">
           <Toaster />
-          <div className="container max-w-screen-md mx-auto py-10 flex flex-col items-center">
-            <div className="text-white text-5xl font-bold font-playwrite mb-10 ">
+          <div className="container max-w-screen-md h-full mx-auto py-10 flex flex-col items-center">
+            <div className="text-black text-5xl font-bold font-playwrite mb-10 mt-10">
               {user ? <span>Update</span> : <span>Set</span>} Your Profile
             </div>
             <div className="px-8">
-              <div className="bg-gray-900 border-white border-2 rounded shadow-lg p-4 px-4 md:p-12 mb-6">
+              <div className="bg-white border-2 border-black rounded shadow-lg p-4 px-4 md:p-12 mb-6">
                 <div className="lg:col-span-2 gap-4">
-                  <div className="grid gap-4 gap-y-2 text-sm grid-cols-1 text-white  md:grid-cols-5">
+                  <div className="grid gap-4 gap-y-2 text-sm grid-cols-1 text-black  md:grid-cols-5">
                     {user ? (
                       <div className="md:col-span-5 mb-6">
                         <label className="text-xl">Name :</label>
@@ -177,7 +177,7 @@ const ProfileInputs = () => {
                     </div>
 
                     <div className="md:col-span-1">
-                      <label className="text-xl">Pincode : </label>
+                      <label className="text-xl">Age : </label>
                       <input
                         type="number"
                         onChange={(e) => handleChange(e, "age")}
