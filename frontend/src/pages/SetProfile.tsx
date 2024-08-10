@@ -5,7 +5,7 @@ import Navbar from "../components/Navbar";
 
 const SetProfile: React.FC = () => {
   return (
-    <div className="w-screen h-full md:h-screen flex flex-col overflow-x-hidden">
+    <div className="w-screen h-full md:h-full flex flex-col overflow-x-hidden">
       <Navbar />
       <ProfileInputs />
       <Footer />
