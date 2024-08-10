@@ -25,7 +25,7 @@ export const signUpInput = z.object({
 export type signUpType = z.infer<typeof signUpInput>;
 
 const Signup: React.FC = () => {
-	const { setLoggedIn } = useContext(AppContext) as Context;
+	const { setUser, setLoggedIn } = useContext(AppContext) as Context;
 	const BACKEND_URL = import.meta.env.VITE_DATABASE_URL;
 	const navigate = useNavigate();
 	const [show, setShow] = useState<boolean>(false);
@@ -78,6 +78,7 @@ const Signup: React.FC = () => {
 				});
 				setTimeout(() => {
 					setLoggedIn(true);
+					setUser(userInput);
 					localStorage.setItem("loggedIn", "" + true);
 					navigate("/");
 				}, 1000);
@@ -85,6 +86,7 @@ const Signup: React.FC = () => {
 				alert(res.data.message);
 			}
 		} catch (error) {
+			console.log(error);
 			alert("Error while sending request");
 		}
 	}

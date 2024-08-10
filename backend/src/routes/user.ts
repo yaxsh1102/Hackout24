@@ -32,6 +32,8 @@ export const signInInput = z.object({
 		.min(8, { message: "Password should atleast be of 8 characters" }),
 });
 
+export type signInType = z.infer<typeof signInInput>;
+
 export const userRouter = new Hono<{
 	Bindings: {
 		DATABASE_URL: string;
