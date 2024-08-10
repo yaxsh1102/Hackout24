@@ -18,7 +18,6 @@ const Sidebar: React.FC = () => {
 				<div className="w-full border-b-dark-green border-b-2 p-4 font-playwrite text-2xl font-extrabold">
 					AgroQuality
 				</div>
-
 				<ul className="space-y-2 mt-8 font-medium">
 					<li>
 						<button
