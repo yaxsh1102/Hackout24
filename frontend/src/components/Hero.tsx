@@ -3,6 +3,10 @@ import { useNavigate } from "react-router-dom";
 
 const Hero: React.FC = () => {
 	const navigate = useNavigate();
+	function clickHandler(){
+		navigate("/pricing")
+
+	}
 
 	return (
 		<div className="w-screen h-screen bg-[url('https://thumbs.wbm.im/pw/medium/e0a8bf2099861254af1dc34ac38f0934.avif')] bg-cover bg-opacity-30 flex justify-center font-sans overflow-x-hidden">
@@ -21,7 +25,7 @@ const Hero: React.FC = () => {
 				</p>
 
 				<div className="w-full flex justify-center gap-x-6 mt-4">
-					<button className="w-[12rem] h-[3rem] bg-[#2d6930] text-lg font-semibold rounded-lg hover:bg-green-900 hover:border-2 hover:border-white transition-all duration-300">
+					<button className="w-[12rem] h-[3rem] bg-[#2d6930] text-lg font-semibold rounded-lg hover:bg-green-900 hover:border-2 hover:border-white transition-all duration-300" onClick={clickHandler}>
 						Get Started
 					</button>
 					<button
