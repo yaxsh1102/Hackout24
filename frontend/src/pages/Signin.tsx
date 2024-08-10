@@ -75,10 +75,7 @@ const Signin: React.FC = () => {
 				});
 				setTimeout(() => {
 					setLoggedIn(true);
-					setUser({
-						name: res.data.name,
-						email: userInput.email,
-					});
+					window.location.reload();
 					localStorage.setItem("loggedIn", "" + true);
 					navigate("/");
 				}, 1000);
