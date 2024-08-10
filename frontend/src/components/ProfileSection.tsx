@@ -63,6 +63,17 @@ const ProfileSection = () => {
                             size={20}
                             className="mt-[0.3rem] mr-3"
                           />
+                          <span className="text-2xl">Age : </span>
+                        </td>
+                        <td className="ml-2 mt-1">{user?.age}</td>
+                      </tr>
+                      <tr className="mt-4 flex items-center">
+                        <td className="flex items-center">
+                          <FaRegCircleDot
+                            fill="black"
+                            size={20}
+                            className="mt-[0.3rem] mr-3"
+                          />
                           <span className="text-2xl">Country : </span>
                         </td>
                         <td className="ml-2 mt-1">{user?.country}</td>

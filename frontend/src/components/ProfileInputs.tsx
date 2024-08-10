@@ -72,8 +72,8 @@ const ProfileInputs = () => {
           },
         });
         setUser({
-          ...user,
-          name: userInput.name,
+          ...userInput,
+          email: user.email,
         });
         setTimeout(() => {
           navigate("/");
