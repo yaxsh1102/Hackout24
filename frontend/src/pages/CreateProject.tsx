@@ -92,9 +92,10 @@ const CreateProject: React.FC = () => {
 
 			if (res.data.farmer) {
 				toast.dismiss();
+				console.log(res.data.farmer.id);
 				try {
 					const resp = await axios.post(
-						`${BACKEND_URL}/api/project/createProject`,
+						`${BACKEND_URL}/api/v1/project/createProject`,
 						{
 							farmerId: res.data.farmer.id,
 						},
@@ -113,14 +114,13 @@ const CreateProject: React.FC = () => {
 						},
 					});
 					setTimeout(() => {
-						navigate("/success"); // Redirect to a success page or dashboard
+						navigate("/myprojects"); // Redirect to a success page or dashboard
 					}, 1000);
 					return;
 				} catch (error) {
 					alert("alert while creating project");
 				}
 			}
-
 			alert(res.data.message);
 		} catch (error) {
 			console.error(error);

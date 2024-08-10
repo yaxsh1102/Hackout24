@@ -10,7 +10,7 @@ const MyProjects: React.FC = () => {
 	const { projects, loading } = useProject();
 
 	return (
-		<div className="flex flex-col overflow-x-hidden ">
+		<div className="flex flex-col overflow-x-hidden">
 			<Navbar />
 			<div className="min-h-screen bg-gray-100 p-6 mt-20">
 				<div className="bg-green-600 text-white p-4 rounded-lg shadow-md mb-6 text-center">
@@ -21,13 +21,18 @@ const MyProjects: React.FC = () => {
 				) : (
 					<div className="flex flex-col space-y-4">
 						{projects.length > 0 ? (
-							projects.map((project, index) => (
-								<ProjectStrips
-									key={index}
-									projectId={project.id}
-									farmer={farmer[index]}
-								/>
-							))
+							projects.map((project, index) => {
+								const projectFarmer = farmer.filter(
+									(f) => f.id === project.farmerId
+								)[0];
+								return (
+									<ProjectStrips
+										key={index}
+										projectId={project.id}
+										farmer={projectFarmer}
+									/>
+								);
+							})
 						) : (
 							<p className="text-center text-gray-700">
 								No projects available.
