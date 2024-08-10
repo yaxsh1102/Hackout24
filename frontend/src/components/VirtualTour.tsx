@@ -1,7 +1,13 @@
 import React from "react";
 import Navbar from "./Navbar";
+import { useNavigate } from "react-router-dom";
 
 const VirtualTour: React.FC = () => {
+	const navigate = useNavigate()
+
+	function clickHandler(){
+		navigate("/pricing")
+	}
 	return (
 		<div className="flex flex-col overflow-x-hidden ">
 			<Navbar />
@@ -154,7 +160,7 @@ const VirtualTour: React.FC = () => {
 				</div>
 
 				<div className="w-screen h-[300px] bg-[#f1f1f1] flex items-center justify-center">
-					<button className="p-5 w-[300px] h-[80px] text-white rounded-lg text-2xl bg-[#036a38] hover:bg-[#039750] transition-all">
+					<button className="p-5 w-[300px] h-[80px] text-white rounded-lg text-2xl bg-[#036a38] hover:bg-[#039750] transition-all" onClick={clickHandler}>
 						TAKE ME TO PRICING
 					</button>
 				</div>

@@ -15,7 +15,7 @@ function App() {
 				<Route path="/virtual-tour" element={<VirtualTour />} />
 				<Route path="/signup" element={<Signup />} />
 				<Route path="/signin" element={<Signin />} />
-				<Route path="/pricing" element={<Pricing></>}></Route>
+				<Route path="/pricing" element={<Pricing/>}></Route>
         <Route path="/profile" element={<Profile />} />
 			</Routes>
 		</BrowserRouter>
