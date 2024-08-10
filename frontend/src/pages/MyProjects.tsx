@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useProject } from "../hooks/useProjects";
 import ProjectStrips from "../components/ProjectStrips";
 import Loading from "../components/Loading";
@@ -6,8 +6,13 @@ import { useFarmer } from "../hooks/useFarmer";
 import Navbar from "../components/Navbar";
 
 const MyProjects: React.FC = () => {
-	const { farmer } = useFarmer();
-	const { projects, loading } = useProject();
+	const { farmer, loading: farmerLoading } = useFarmer();
+	const { projects, loading: projectsLoading } = useProject();
+
+	useEffect(() => {}, [farmer]);
+
+	// Combined loading state to handle both farmer and projects loading
+	const loading = farmerLoading || projectsLoading;
 
 	return (
 		<div className="flex flex-col overflow-x-hidden">
@@ -20,18 +25,18 @@ const MyProjects: React.FC = () => {
 					<Loading />
 				) : (
 					<div className="flex flex-col space-y-4">
-						{projects.length > 0 ? (
+						{projects.length > 0 && farmer ? (
 							projects.map((project, index) => {
-								const projectFarmer = farmer.filter(
+								const projectFarmer = farmer.find(
 									(f) => f.id === project.farmerId
-								)[0];
-								return (
+								);
+								return projectFarmer ? (
 									<ProjectStrips
 										key={index}
 										projectId={project.id}
 										farmer={projectFarmer}
 									/>
-								);
+								) : null;
 							})
 						) : (
 							<p className="text-center text-gray-700">

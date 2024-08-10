@@ -14,7 +14,7 @@ const ProjectStrips = ({
 	projectId: string;
 }) => {
 	const navigate = useNavigate();
-	const [polygonId, setPolygonId] = useState("");
+	const [polygonId, setPolygonId] = useState<string>("");
 	const [soilData, setSoilData] = useState({ t10: 0, moisture: 0, t0: 0 });
 	const [uvi, setUvi] = useState(0);
 	const [weatherData, setWeatherData] = useState({
@@ -25,30 +25,35 @@ const ProjectStrips = ({
 		humidity: 0,
 	});
 
-	const coordinates =
-		"-121.1958,37.6683,-121.1779,37.6687,-121.1773,37.6792,-121.1958,37.6792,-121.1958,37.6683";
+	const polyId = usePoly(farmer.location);
 
-	const polyId = usePoly(coordinates);
-	console.log(polyId);
+	useEffect(() => {
+		if (polyId) {
+			setPolygonId(polyId.id);
+		}
+	}, []);
 
-	// useEffect(() => {
-	// 	if (polyId) {
-	// 		setPolygonId(polyId.id);
-	// 	}
-	// }, [polyId]);
+	if (polygonId == undefined) {
+		return <div>Loading...</div>;
+	}
 
-	// if (!polygonId) {
-	// 	return <div>Loading...</div>;
-	// }
-	// const { t10, moisture, t0 } = useSoil(polygonId);
+	console.log(typeof polygonId);
+	console.log(polygonId);
 	// const { uvIndex } = useUvi(polygonId);
-	// const { wgroup, description, atmtemp, pressure, humidity } =
-	// 	useWeather(coordinates);
+	// console.log("got the uv index");
+	// console.log(uvIndex);
+	// const { t10, moisture, t0 } = useSoil(polygonId);
+	// const { wgroup, description, atmtemp, pressure, humidity } = useWeather(
+	// 	farmer.location
+	// );
 
 	// useEffect(() => {
 	// 	setSoilData({ t10, moisture, t0 });
 	// 	setUvi(uvIndex);
 	// 	setWeatherData({ wgroup, description, atmtemp, pressure, humidity });
+	// 	console.log(soilData);
+	// 	console.log(uvi);
+	// 	console.log(weatherData);
 	// }, [
 	// 	t10,
 	// 	moisture,
