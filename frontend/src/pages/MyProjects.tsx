@@ -9,7 +9,14 @@ const MyProjects: React.FC = () => {
 	const { farmer, loading: farmerLoading } = useFarmer();
 	const { projects, loading: projectsLoading } = useProject();
 
-	useEffect(() => {}, [farmer]);
+	// State to hold the first 3 farmers
+	const [limitedFarmers, setLimitedFarmers] = useState(farmer.slice(0, 2));
+
+	useEffect(() => {
+		if (farmer.length > 0) {
+			setLimitedFarmers(farmer.slice(0, 2));
+		}
+	}, [farmer]);
 
 	// Combined loading state to handle both farmer and projects loading
 	const loading = farmerLoading || projectsLoading;
@@ -25,9 +32,9 @@ const MyProjects: React.FC = () => {
 					<Loading />
 				) : (
 					<div className="flex flex-col space-y-4">
-						{projects.length > 0 && farmer ? (
+						{projects.length > 0 && limitedFarmers ? (
 							projects.map((project, index) => {
-								const projectFarmer = farmer.find(
+								const projectFarmer = limitedFarmers.find(
 									(f) => f.id === project.farmerId
 								);
 								return projectFarmer ? (
