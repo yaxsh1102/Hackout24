@@ -1,5 +1,6 @@
 import React from "react";
 import Navbar from "./Navbar";
+import Footer from "./Footer";
 
 const VirtualTour: React.FC = () => {
 	return (
@@ -159,6 +160,7 @@ const VirtualTour: React.FC = () => {
 					</button>
 				</div>
 			</div>
+			<Footer />
 		</div>
 	);
 };
