@@ -25,70 +25,70 @@ export const signUpInput = z.object({
 export type signUpType = z.infer<typeof signUpInput>;
 
 const Signup: React.FC = () => {
-  const { setLoggedIn } = useContext(AppContext) as Context;
-  const BACKEND_URL = import.meta.env.VITE_DATABASE_URL;
-  const navigate = useNavigate();
-  const [show, setShow] = useState<boolean>(false);
-  const [userInput, setUserInput] = useState<signUpType>({
-    name: "",
-    email: "",
-    password: "",
-    age: "",
-    area: "",
-    city: "",
-    state: "",
-    country: "",
-  });
+	const { setUser, setLoggedIn } = useContext(AppContext) as Context;
+	const BACKEND_URL = import.meta.env.VITE_DATABASE_URL;
+	const navigate = useNavigate();
+	const [show, setShow] = useState<boolean>(false);
+	const [userInput, setUserInput] = useState<signUpType>({
+		name: "",
+		email: "",
+		password: "",
+		age: "",
+		area: "",
+		city: "",
+		state: "",
+		country: "",
+	});
 
   useEffect(() => {
     if (localStorage.getItem("loggedIn") === "true") navigate("/");
   }, []);
-
-  async function sendRequest() {
-    try {
-      console.log(userInput);
-      const res = await axios.post(
-        `${BACKEND_URL}/api/v1/user/signup`,
-        userInput
-      );
-      if (res.data.status === 406 || res.data.status === 403) {
-        toast((t) => (
-          <div className="flex justify-between bg-red-700 text-white p-4 rounded-md shadow-lg -mx-5 -my-3">
-            <span className="font-bold">{res.data.message}</span>
-            <button
-              className="ml-2 text-red-500"
-              onClick={() => {
-                toast.dismiss(t.id);
-              }}
-            >
-              ❌
-            </button>
-          </div>
-        ));
-      } else if (res.data.jwt) {
-        const jwt = res.data.jwt;
-        localStorage.setItem("token", jwt);
-        toast("YOU HAVE SUCCESSFULLY SIGNED UP!", {
-          icon: "✅",
-          style: {
-            borderRadius: "10px",
-            background: "#333",
-            color: "#fff",
-          },
-        });
-        setTimeout(() => {
-          setLoggedIn(true);
-          localStorage.setItem("loggedIn", "" + true);
-          navigate("/");
-        }, 1000);
-      } else {
-        alert(res.data.message);
-      }
-    } catch (error) {
-      console.log(error);
-      alert("Error while sending request");
-    }
-  }
+	async function sendRequest() {
+		try {
+			console.log(userInput);
+			const res = await axios.post(
+				`${BACKEND_URL}/api/v1/user/signup`,
+				userInput
+			);
+			if (res.data.status === 406 || res.data.status === 403) {
+				toast((t) => (
+					<div className="flex justify-between bg-red-700 text-white p-4 rounded-md shadow-lg -mx-5 -my-3">
+						<span className="font-bold">{res.data.message}</span>
+						<button
+							className="ml-2 text-red-500"
+							onClick={() => {
+								toast.dismiss(t.id);
+							}}
+						>
+							❌
+						</button>
+					</div>
+				));
+			} else if (res.data.jwt) {
+				const jwt = res.data.jwt;
+				localStorage.setItem("token", jwt);
+				toast("YOU HAVE SUCCESSFULLY SIGNED UP!", {
+					icon: "✅",
+					style: {
+						borderRadius: "10px",
+						background: "#333",
+						color: "#fff",
+					},
+				});
+				setTimeout(() => {
+					setLoggedIn(true);
+					setUser(userInput);
+					localStorage.setItem("loggedIn", "" + true);
+					navigate("/");
+				}, 1000);
+			} else {
+				alert(res.data.message);
+			}
+		} catch (error) {
+			console.log(error);
+			alert("Error while sending request");
+		}
+	}
 
   return (
     <div className="min-w-screen min-h-screen flex items-center justify-center bg-gray-100">
