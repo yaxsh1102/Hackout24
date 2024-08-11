@@ -47,12 +47,15 @@ export interface Context {
 			humidity: number;
 		}>
 	>;
+	type: string;
+	setType: React.Dispatch<React.SetStateAction<string>>;
 }
 export const AppContext = createContext<Context | null>(null);
 
 const AppContextProvider: React.FC<{ children: React.ReactNode }> = ({
 	children,
 }) => {
+	const [type, setType] = useState<string>("half");
 	const BACKEND_URL = import.meta.env.VITE_DATABASE_URL;
 	const [user, setUser] = useState<User>({
 		name: "",
@@ -100,7 +103,7 @@ const AppContextProvider: React.FC<{ children: React.ReactNode }> = ({
 		if (localStorage.getItem("token")) {
 			sendRequest();
 		}
-	}, []);
+	}, [user, type]);
 
 	return (
 		<AppContext.Provider
@@ -121,6 +124,8 @@ const AppContextProvider: React.FC<{ children: React.ReactNode }> = ({
 				setSoilData,
 				weatherData,
 				setWeatherData,
+				type,
+				setType,
 			}}
 		>
 			{children}
