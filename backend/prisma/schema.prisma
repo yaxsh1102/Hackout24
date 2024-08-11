@@ -23,6 +23,7 @@ model Employee {
   city     String
   state    String
   country  String
+  type     String?
   Farmer   Farmer[]
   Project  Project[]
 }
@@ -41,21 +42,9 @@ model Farmer {
 }
 
 model Project {
-  id                    String   @id @default(uuid())
-  Farmer                Farmer   @relation(fields: [farmerId], references: [id])
-  farmerId              String   @unique
-  Employee              Employee @relation(fields: [employeeId], references: [id])
-  employeeId            String
-  temperature10         String?
-  moisture              String?
-  temperature           String?
-  ultravioletIndex      String?
-  weatherGroup          String?
-  weatherDescription    String?
-  atmosphericTemprature String?
-  pressure              String?
-  humidity              String?
-  cloudiness            String?
-  rainVolume3hrs        String?
-  snowVolume3hrs        String?
+  id         String   @id @default(uuid())
+  Farmer     Farmer   @relation(fields: [farmerId], references: [id])
+  farmerId   String   @unique
+  Employee   Employee @relation(fields: [employeeId], references: [id])
+  employeeId String
 }
