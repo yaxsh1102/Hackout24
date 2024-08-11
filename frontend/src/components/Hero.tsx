@@ -1,10 +1,15 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { AppContext, Context } from "../context/AppContext";
 
 const Hero: React.FC = () => {
+  const { user } = useContext(AppContext) as Context;
+
   const navigate = useNavigate();
   function clickHandler() {
-    navigate("/pricing");
+    if (user.type) navigate("/my-purchase");
+    else navigate("/pricing");
   }
 
   return (
