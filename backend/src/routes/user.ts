@@ -181,3 +181,81 @@ userRouter.get("/getUser", async (c) => {
 		});
 	}
 });
+
+userRouter.put("/updateProfile", async (c) => {
+	const prisma = new PrismaClient({
+		datasourceUrl: c.env?.DATABASE_URL,
+	}).$extends(withAccelerate());
+	try {
+		// Authorization header check
+		const authHeader = c.req.header("Authorization");
+		if (!authHeader) {
+			c.status(403);
+			return c.json({
+				message: "You are not logged in",
+			});
+		}
+
+		// Verify JWT token
+		const user = await verify(authHeader, c.env.JWT_SECRET);
+		const body = await c.req.json();
+
+		const profile = await prisma.employee.update({
+			where: {
+				id: user.id + "",
+			},
+			data: {
+				city: body.city,
+				state: body.state,
+				country: body.country,
+				area: body.area,
+				age: body.age,
+				name: body.name,
+			},
+		});
+
+		c.status(200);
+		return c.json({
+			message: "Profile successfully created",
+		});
+	} catch (e) {
+		c.status(411);
+		return c.json({
+			message: e,
+		});
+	}
+});
+
+userRouter.get("/allProjects", async (c) => {
+	const prisma = new PrismaClient({
+		datasourceUrl: c.env?.DATABASE_URL,
+	}).$extends(withAccelerate());
+
+	const authHeader = c.req.header("Authorization");
+	if (!authHeader) {
+		return c.json({
+			message: null,
+		});
+	}
+	const user = await verify(authHeader, c.env.JWT_SECRET);
+	c.set("userId", "" + user.id);
+	try {
+		const res = await prisma.project.findMany({
+			where: {
+				employeeId: c.get("userId"),
+			},
+		});
+		if (res) {
+			const data = res;
+			return c.json(data);
+		} else {
+			return c.json({
+				message: null,
+			});
+		}
+	} catch (error) {
+		c.json({
+			message: null,
+		});
+	}
+});

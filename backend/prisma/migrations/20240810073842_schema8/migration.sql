@@ -1,0 +1,13 @@
+-- AlterTable
+ALTER TABLE "Project" ALTER COLUMN "temperature10" DROP NOT NULL,
+ALTER COLUMN "moisture" DROP NOT NULL,
+ALTER COLUMN "temperature" DROP NOT NULL,
+ALTER COLUMN "ultravioletIndex" DROP NOT NULL,
+ALTER COLUMN "weatherGroup" DROP NOT NULL,
+ALTER COLUMN "weatherDescription" DROP NOT NULL,
+ALTER COLUMN "atmosphericTemprature" DROP NOT NULL,
+ALTER COLUMN "pressure" DROP NOT NULL,
+ALTER COLUMN "humidity" DROP NOT NULL,
+ALTER COLUMN "cloudiness" DROP NOT NULL,
+ALTER COLUMN "rainVolume3hrs" DROP NOT NULL,
+ALTER COLUMN "snowVolume3hrs" DROP NOT NULL;

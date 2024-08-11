@@ -8,6 +8,9 @@ import Pricing from "./pages/Pricing";
 import CreateProject from "./pages/CreateProject";
 import PaymentGateway from "./pages/PaymentGateway";
 import MyPurchase from "./pages/MyPurchase";
+import SetProfile from "./pages/SetProfile";
+import MyProjects from "./pages/MyProjects";
+import ProjectInfo from "./pages/ProjectInfo";
 
 function App() {
 	return (
@@ -19,9 +22,12 @@ function App() {
 				<Route path="/signin" element={<Signin />} />
 				<Route path="/pricing" element={<Pricing />} />
 				<Route path="/profile" element={<Profile />} />
+				<Route path="/setProfile" element={<SetProfile />} />
 				<Route path="/create-project" element={<CreateProject />} />
 				<Route path= "/payment-gateway" element={<PaymentGateway/>}/>
 				<Route path="/my-purchase" element={<MyPurchase></MyPurchase>}/>
+				<Route path="/myprojects" element={<MyProjects />} />
+				<Route path="/myprojects/:projectId" element={<ProjectInfo />} />
 			</Routes>
 		</BrowserRouter>
 	);
