@@ -15,42 +15,50 @@ const ProjectStrips = ({
 	projectId: string;
 }) => {
 	const navigate = useNavigate();
-	// const { setUvi,  setSoilData,  setWeatherData } =
-	// 	useContext(AppContext) as Context;
-	// const [polygonId, setPolygonId] = useState<string>("");
+	const { uvi, setUvi, soilData, setSoilData, weatherData, setWeatherData } =
+		useContext(AppContext) as Context;
+	const [polygonId, setPolygonId] = useState<string>("");
 
-	// const polyId = usePoly(farmer.location);
+	const polyId = usePoly(farmer.location);
 
-	// useEffect(() => {
-	// 	if (polyId) {
-	// 		setPolygonId(polyId.id);
-	// 	}
-	// }, [polyId]);
+	useEffect(() => {
+		if (polyId) {
+			setPolygonId(polyId.id);
+		}
+	}, [polyId]);
 
-	// if (polygonId == undefined) {
-	// 	return <div>Loading...</div>;
-	// }
-	// const { uvIndex } = useUvi(polygonId + "");
-	// const { t10, moisture, t0 } = useSoil(polygonId + "");
-	// const { wgroup, description, atmtemp, pressure, humidity } = useWeather(
-	// 	farmer.location
-	// );
+	if (polygonId == undefined) {
+		return <div>Loading...</div>;
+	}
+	console.log("the poy id ", polygonId);
+	const { uvIndex } = useUvi(polygonId + "");
+	const { t10, moisture, t0 } = useSoil(polygonId + "");
+	const { wgroup, description, atmtemp, pressure, humidity } = useWeather(
+		farmer.location
+	);
 
-	// useEffect(() => {
-	// 	setSoilData({ t10, moisture, t0 });
-	// 	setUvi(uvIndex);
-	// 	setWeatherData({ wgroup, description, atmtemp, pressure, humidity });
-	// }, [
-	// 	t10,
-	// 	moisture,
-	// 	t0,
-	// 	uvIndex,
-	// 	wgroup,
-	// 	description,
-	// 	atmtemp,
-	// 	pressure,
-	// 	humidity,
-	// ]);
+	useEffect(() => {
+		console.log("in strips");
+		console.log("uvi");
+		console.log(uvi);
+		console.log("soil data");
+		console.log(soilData);
+		console.log("weather data");
+		console.log(weatherData);
+		setSoilData({ t10, moisture, t0 });
+		setUvi(uvIndex);
+		setWeatherData({ wgroup, description, atmtemp, pressure, humidity });
+	}, [
+		t10,
+		moisture,
+		t0,
+		uvIndex,
+		wgroup,
+		description,
+		atmtemp,
+		pressure,
+		humidity,
+	]);
 
 	return (
 		<div className="w-full mb-4 p-4 bg-white border border-yellow-300 rounded-lg shadow-md hover:shadow-lg transition-shadow flex items-center justify-between">
