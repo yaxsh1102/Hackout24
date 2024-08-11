@@ -19,14 +19,14 @@ export const signInInput = z.object({
 export type signInType = z.infer<typeof signInInput>;
 
 const Signin: React.FC = () => {
-  const { setLoggedIn, setUser } = useContext(AppContext) as Context;
-  const BACKEND_URL = import.meta.env.VITE_DATABASE_URL;
-  const navigate = useNavigate();
-  const [show, setShow] = useState<boolean>(false);
-  const [userInput, setUserInput] = useState<signInType>({
-    email: "",
-    password: "",
-  });
+	const { setLoggedIn, } = useContext(AppContext) as Context;
+	const BACKEND_URL = import.meta.env.VITE_DATABASE_URL;
+	const navigate = useNavigate();
+	const [show, setShow] = useState<boolean>(false);
+	const [userInput, setUserInput] = useState<signInType>({
+		email: "",
+		password: "",
+	});
 
   function handleChange(
     e: React.ChangeEvent<HTMLInputElement>,
@@ -41,51 +41,51 @@ const Signin: React.FC = () => {
   useEffect(() => {
     if (localStorage.getItem("loggedIn") === "true") navigate("/");
   }, []);
-
-  async function sendRequest() {
-    try {
-      const res = await axios.post(
-        `${BACKEND_URL}/api/v1/user/signin`,
-        userInput
-      );
-      if (res.data.status === 406 || res.data.status === 401) {
-        toast((t) => (
-          <div className="flex justify-between bg-red-700 text-white p-4 rounded-md shadow-lg -mx-5 -my-3">
-            <span className="font-bold">{res.data.message}</span>
-            <button
-              className="ml-2 text-red-500"
-              onClick={() => {
-                toast.dismiss(t.id);
-              }}
-            >
-              ❌
-            </button>
-          </div>
-        ));
-      } else if (res.data.jwt) {
-        const jwt = res.data.jwt;
-        localStorage.setItem("token", jwt);
-        toast("YOU HAVE SUCCESSFULLY LOGGED IN!", {
-          icon: "✅",
-          style: {
-            borderRadius: "10px",
-            background: "#333",
-            color: "#fff",
-          },
-        });
-        setTimeout(() => {
-          setLoggedIn(true);
-          window.location.reload();
-          localStorage.setItem("loggedIn", "" + true);
-          navigate("/");
-        }, 1000);
-      } else {
-        alert(res.data.message);
-      }
-    } catch (error) {
-      alert("Error while sending request");
-    }
-  }
+	async function sendRequest() {
+		try {
+			const res = await axios.post(
+				`${BACKEND_URL}/api/v1/user/signin`,
+				userInput
+			);
+			if (res.data.status === 406 || res.data.status === 401) {
+				toast((t) => (
+					<div className="flex justify-between bg-red-700 text-white p-4 rounded-md shadow-lg -mx-5 -my-3">
+						<span className="font-bold">{res.data.message}</span>
+						<button
+							className="ml-2 text-red-500"
+							onClick={() => {
+								toast.dismiss(t.id);
+							}}
+						>
+							❌
+						</button>
+					</div>
+				));
+			} else if (res.data.jwt) {
+				const jwt = res.data.jwt;
+				localStorage.setItem("token", jwt);
+				toast("YOU HAVE SUCCESSFULLY LOGGED IN!", {
+					icon: "✅",
+					style: {
+						borderRadius: "10px",
+						background: "#333",
+						color: "#fff",
+					},
+				});
+				setTimeout(() => {
+					setLoggedIn(true);
+					window.location.reload();
+					localStorage.setItem("loggedIn", "" + true);
+					navigate("/");
+				}, 1000);
+			} else {
+				alert(res.data.message);
+			}
+		} catch (error) {
+			console.log(error)
+			alert("Error while sending request");
+		}
+	}
 
   return (
     <div className="min-w-screen min-h-screen flex items-center justify-center bg-gray-100">

@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { farmerInputType } from "../hooks/useFarmer";
 import { usePoly } from "../hooks/usePoly";
 import { useUvi } from "../hooks/useUvi";
 import { useSoil } from "../hooks/useSoil";
 import { useWeather } from "../hooks/useWeather";
+import { AppContext, Context } from "../context/AppContext";
 
 const ProjectStrips = ({
   farmer,
@@ -14,35 +15,23 @@ const ProjectStrips = ({
   projectId: string;
 }) => {
   const navigate = useNavigate();
-  const [polygonId, setPolygonId] = useState<string>("");
-  const [soilData, setSoilData] = useState({ t10: 0, moisture: 0, t0: 0 });
-  const [uvi, setUvi] = useState(0);
-  const [weatherData, setWeatherData] = useState({
-    wgroup: "",
-    description: "",
-    atmtemp: 0,
-    pressure: 0,
-    humidity: 0,
-  });
+  // const { setUvi,  setSoilData,  setWeatherData } =
+  // 	useContext(AppContext) as Context;
+  // const [polygonId, setPolygonId] = useState<string>("");
 
-  const polyId = usePoly(farmer.location);
+  // const polyId = usePoly(farmer.location);
 
-  useEffect(() => {
-    if (polyId) {
-      setPolygonId(polyId.id);
-    }
-  }, []);
+  // useEffect(() => {
+  // 	if (polyId) {
+  // 		setPolygonId(polyId.id);
+  // 	}
+  // }, [polyId]);
 
-  if (polygonId == undefined) {
-    return <div>Loading...</div>;
-  }
-
-  console.log(typeof polygonId);
-  console.log(polygonId);
-  // const { uvIndex } = useUvi(polygonId);
-  // console.log("got the uv index");
-  // console.log(uvIndex);
-  // const { t10, moisture, t0 } = useSoil(polygonId);
+  // if (polygonId == undefined) {
+  // 	return <div>Loading...</div>;
+  // }
+  // const { uvIndex } = useUvi(polygonId + "");
+  // const { t10, moisture, t0 } = useSoil(polygonId + "");
   // const { wgroup, description, atmtemp, pressure, humidity } = useWeather(
   // 	farmer.location
   // );
@@ -51,9 +40,6 @@ const ProjectStrips = ({
   // 	setSoilData({ t10, moisture, t0 });
   // 	setUvi(uvIndex);
   // 	setWeatherData({ wgroup, description, atmtemp, pressure, humidity });
-  // 	console.log(soilData);
-  // 	console.log(uvi);
-  // 	console.log(weatherData);
   // }, [
   // 	t10,
   // 	moisture,

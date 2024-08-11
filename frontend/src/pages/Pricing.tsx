@@ -1,8 +1,10 @@
 import React from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import { useNavigate } from "react-router-dom";
 
 const Pricing: React.FC = () => {
+  const navigate = useNavigate();
   return (
     <>
       <Navbar></Navbar>
@@ -98,7 +100,10 @@ const Pricing: React.FC = () => {
                   </span>
                 </li>
               </ul>
-              <button className="text-white bg-green-700 focus:ring-4 focus:ring-primary-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:text-white dark:focus:ring-primary-900 border-[1px] border-green hover:bg-[#19461b]">
+              <button
+                onClick={() => navigate("/payment-gateway")}
+                className="text-white bg-green-700 focus:ring-4 focus:ring-primary-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:text-white dark:focus:ring-primary-900 border-[1px] border-green hover:bg-[#19461b]"
+              >
                 Get started
               </button>
             </div>
@@ -183,11 +188,13 @@ const Pricing: React.FC = () => {
                   </span>
                 </li>
               </ul>
-              <button className="text-white bg-green-700 focus:ring-4 focus:ring-primary-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:text-white dark:focus:ring-primary-900 border-[1px] border-green hover:bg-[#19461b]">
+              <button
+                onClick={() => navigate("/payment-gateway")}
+                className="text-white bg-green-700 focus:ring-4 focus:ring-primary-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:text-white dark:focus:ring-primary-900 border-[1px] border-green hover:bg-[#19461b]"
+              >
                 Get started
               </button>
             </div>
-
             {/* Pricing Card */}
             <div className="flex flex-col p-6 mx-auto max-w-lg text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:p-8 dark:bg-[#2d6930] dark:text-white">
               <h3 className="mb-4 text-2xl font-semibold">Half</h3>
@@ -268,7 +275,10 @@ const Pricing: React.FC = () => {
                   </span>
                 </li>
               </ul>
-              <button className="text-white bg-green-700 focus:ring-4 focus:ring-primary-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:text-white dark:focus:ring-primary-900 border-[1px] border-green hover:bg-[#19461b]">
+              <button
+                onClick={() => navigate("/payment-gateway")}
+                className="text-white bg-green-700 focus:ring-4 focus:ring-primary-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:text-white dark:focus:ring-primary-900 border-[1px] border-green hover:bg-[#19461b]"
+              >
                 Get started
               </button>
             </div>

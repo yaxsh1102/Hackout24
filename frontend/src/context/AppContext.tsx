@@ -9,6 +9,17 @@ type User = {
   city: string;
   state: string;
   country: string;
+  type: string;
+};
+
+type Soil = { t10: number; moisture: number; t0: number };
+
+type Weather = {
+  wgroup: String;
+  description: String;
+  atmtemp: number;
+  pressure: number;
+  humidity: number;
 };
 
 export interface Context {
@@ -22,6 +33,20 @@ export interface Context {
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
   status: number;
   setStatus: React.Dispatch<React.SetStateAction<number>>;
+  soilData: Soil;
+  setSoilData: React.Dispatch<React.SetStateAction<Soil>>;
+  uvi: number;
+  setUvi: React.Dispatch<React.SetStateAction<number>>;
+  weatherData: Weather;
+  setWeatherData: React.Dispatch<
+    React.SetStateAction<{
+      wgroup: string;
+      description: string;
+      atmtemp: number;
+      pressure: number;
+      humidity: number;
+    }>
+  >;
 }
 export const AppContext = createContext<Context | null>(null);
 
@@ -37,11 +62,25 @@ const AppContextProvider: React.FC<{ children: React.ReactNode }> = ({
     city: "",
     state: "",
     country: "",
+    type: "",
   });
   const [loggedIn, setLoggedIn] = useState<boolean>(false);
   const [sidebar, setSidebar] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(true);
   const [status, setStatus] = useState(411);
+  const [soilData, setSoilData] = useState({
+    t10: 281.96,
+    moisture: 0.175,
+    t0: 279.02,
+  });
+  const [uvi, setUvi] = useState<number>(3.84);
+  const [weatherData, setWeatherData] = useState({
+    wgroup: "Clouds",
+    description: "overcast clouds",
+    atmtemp: 293.11,
+    pressure: 997,
+    humidity: 84,
+  });
 
   async function sendRequest() {
     const res = await axios.get(`${BACKEND_URL}/api/v1/user/getUser`, {
@@ -76,6 +115,12 @@ const AppContextProvider: React.FC<{ children: React.ReactNode }> = ({
         setLoggedIn,
         sidebar,
         setSidebar,
+        uvi,
+        setUvi,
+        soilData,
+        setSoilData,
+        weatherData,
+        setWeatherData,
       }}
     >
       {children}
