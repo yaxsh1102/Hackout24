@@ -12,9 +12,8 @@ import {
 } from "react-icons/fa";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import { Spinner } from "@nextui-org/react"; // Import Spinner component from NextUI
+import { Spinner } from "@nextui-org/react";
 
-// Define the type for the tips object
 interface TipsObject {
 	[key: string]: string[];
 }
@@ -22,8 +21,8 @@ interface TipsObject {
 const ProjectInfo: React.FC = () => {
 	const [generatedText, setGeneratedText] = useState<string>("");
 	const [array, setArray] = useState<string[]>();
-	const [dataLoaded, setDataLoaded] = useState<boolean>(false); // Added state to track data load
-	const [loading, setLoading] = useState<boolean>(false); // State for loading indicator
+	const [dataLoaded, setDataLoaded] = useState<boolean>(false);
+	const [loading, setLoading] = useState<boolean>(false);
 
 	const { uvi, soilData, weatherData } = useContext(AppContext) as Context;
 	const genAI = new GoogleGenerativeAI(
@@ -59,22 +58,19 @@ The output should help in identifying precise actions to take for improving crop
 `;
 
 		try {
-			setLoading(true); // Set loading to true when starting data fetch
+			setLoading(true);
 			const result = await model.generateContent(prompt);
 			const response = await result.response;
 			const text = await response.text();
 			setGeneratedText(text);
-			setDataLoaded(true); // Set dataLoaded to true once data is processed
-			setLoading(false); // Set loading to false once data is fetched
+			setDataLoaded(true);
 		} catch (error) {
 			console.error("Error:", error);
-			setLoading(false); // Ensure loading is set to false on error
 		}
 	};
 
 	useEffect(() => {
 		if (!dataLoaded) {
-			// Only run if data is not already loaded
 			run();
 		}
 
@@ -82,7 +78,7 @@ The output should help in identifying precise actions to take for improving crop
 			console.log(generatedText);
 
 			// Remove extraneous characters before and after the JSON object
-			const cleanedText = generatedText.replace(/^```json\s*|\s*```$/g, "");
+			const cleanedText = generatedText.replace(/^```json\s*|```$/gi, "");
 
 			try {
 				const jsonData = JSON.parse(cleanedText);
@@ -90,6 +86,7 @@ The output should help in identifying precise actions to take for improving crop
 					JSON.stringify({ [key]: tips })
 				);
 				setArray(formattedArray);
+				setLoading(false);
 			} catch (error) {
 				console.error("JSON Parsing Error:", error);
 			}

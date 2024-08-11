@@ -9,6 +9,7 @@ type User = {
 	city: string;
 	state: string;
 	country: string;
+	type?: string;
 };
 
 type Soil = { t10: number; moisture: number; t0: number };
@@ -61,6 +62,7 @@ const AppContextProvider: React.FC<{ children: React.ReactNode }> = ({
 		city: "",
 		state: "",
 		country: "",
+		type: "",
 	});
 	const [loggedIn, setLoggedIn] = useState<boolean>(false);
 	const [sidebar, setSidebar] = useState<boolean>(false);

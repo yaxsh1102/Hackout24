@@ -14,11 +14,11 @@ const MyProjects: React.FC = () => {
 	const navigate = useNavigate();
 
 	// State to hold the first 3 farmers
-	const [limitedFarmers, setLimitedFarmers] = useState(farmer.slice(0, 10));
+	const [limitedFarmers, setLimitedFarmers] = useState(farmer.slice(0, 1));
 
 	useEffect(() => {
 		if (farmer.length > 0) {
-			setLimitedFarmers(farmer.slice(0, 10));
+			setLimitedFarmers(farmer.slice(0, 1));
 		}
 	}, [farmer]);
 

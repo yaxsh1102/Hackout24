@@ -113,6 +113,8 @@ const CreateProject: React.FC = () => {
 							color: "#fff",
 						},
 					});
+					console.log("in create project call");
+					console.log(resp);
 					setTimeout(() => {
 						navigate("/myprojects"); // Redirect to a success page or dashboard
 					}, 1000);

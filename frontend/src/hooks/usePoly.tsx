@@ -4,6 +4,9 @@ import axios from "axios";
 export const usePoly = (coordinates: string) => {
 	const [id, setId] = useState<string>("");
 	const apiKey = import.meta.env.VITE_API_KEY;
+
+	console.log("Loaded API Key:", apiKey); // Debugging: Check if the API key is loaded correctly
+
 	const coords = coordinates.split(",");
 	const lon = [
 		parseFloat(coords[1]),
@@ -54,7 +57,7 @@ export const usePoly = (coordinates: string) => {
 				);
 				setId(response.data.id);
 			} catch (error) {
-				console.log(error);
+				console.log("Error creating polygon:", error); // More descriptive logging
 			}
 		};
 

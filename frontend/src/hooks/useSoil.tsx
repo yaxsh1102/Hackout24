@@ -7,6 +7,9 @@ export const useSoil = (polyID: string) => {
 	const [t0, setT0] = useState(0);
 	const apiKey = import.meta.env.VITE_API_KEY;
 
+	// Debugging: Log the API key to verify it's being loaded correctly
+	console.log("Loaded API Key in useSoil:", apiKey);
+
 	useEffect(() => {
 		const fetchSoilData = async () => {
 			try {
@@ -18,15 +21,21 @@ export const useSoil = (polyID: string) => {
 						},
 					}
 				);
+
+				// Log the response data for debugging
+				console.log("Soil data fetched:", response.data);
+
+				// Update state with fetched data
 				setT10(response.data.t10);
 				setMoisture(response.data.moisture);
 				setT0(response.data.t0);
-				console.log(response.data);
 			} catch (error) {
-				console.log(error);
+				// Log the error for debugging
+				console.error("Error fetching soil data:", error);
 			}
 		};
 
+		// Fetch soil data when polyID or apiKey changes
 		fetchSoilData();
 	}, [polyID, apiKey]);
 
