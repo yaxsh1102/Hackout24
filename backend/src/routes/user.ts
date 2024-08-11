@@ -259,3 +259,42 @@ userRouter.get("/allProjects", async (c) => {
     });
   }
 });
+
+userRouter.put("/updateType", async (c) => {
+	const prisma = new PrismaClient({
+		datasourceUrl: c.env?.DATABASE_URL,
+	}).$extends(withAccelerate());
+	try {
+		// Authorization header check
+		const authHeader = c.req.header("Authorization");
+		if (!authHeader) {
+			c.status(403);
+			return c.json({
+				message: "You are not logged in",
+			});
+		}
+
+		// Verify JWT token
+		const user = await verify(authHeader, c.env.JWT_SECRET);
+		const body = await c.req.json();
+
+		const profile = await prisma.employee.update({
+			where: {
+				id: user.id + "",
+			},
+			data: {
+				type: body.type,
+			},
+		});
+
+		c.status(200);
+		return c.json({
+			message: "Profile successfully created",
+		});
+	} catch (e) {
+		c.status(411);
+		return c.json({
+			message: e,
+		});
+	}
+});
