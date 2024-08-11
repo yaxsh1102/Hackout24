@@ -77,7 +77,7 @@ const Sidebar: React.FC = () => {
 					<li>
 						<button
 							onClick={() => {
-								if (loggedIn) navigate("/create-project");
+								if (loggedIn) navigate("/pricing");
 								else navigate("/signup");
 								setSidebar(false);
 							}}
@@ -92,7 +92,7 @@ const Sidebar: React.FC = () => {
 							>
 								<path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-1.99.9-1.99 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM7 16V4h12v12H7zm0-14c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2H7z" />
 							</svg>
-							<span className="ms-3 whitespace-nowrap">Add Farmer</span>
+							<span className="ms-3 whitespace-nowrap">My Purchases</span>
 						</button>
 					</li>
 

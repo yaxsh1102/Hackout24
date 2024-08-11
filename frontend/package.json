@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "@google/generative-ai": "^0.16.0",
+    "@nextui-org/card": "^2.0.33",
+    "@nextui-org/react": "^2.4.6",
     "axios": "^1.7.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",

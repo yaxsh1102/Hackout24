@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 export const usePoly = (coordinates: string) => {
-	const [id, setId] = useState("");
+	const [id, setId] = useState<string>("");
 	const apiKey = import.meta.env.VITE_API_KEY;
 	const coords = coordinates.split(",");
 	const lon = [
@@ -43,21 +43,24 @@ export const usePoly = (coordinates: string) => {
 	};
 
 	useEffect(() => {
-		axios
-			.post(
-				`http://api.agromonitoring.com/agro/1.0/polygons?appid=${apiKey}&duplicated=true`,
-				body,
-				{
-					headers: headers,
-				}
-			)
-			.then((response) => {
+		const fetchPolygonId = async () => {
+			try {
+				const response = await axios.post(
+					`http://api.agromonitoring.com/agro/1.0/polygons?appid=${apiKey}&duplicated=true`,
+					body,
+					{
+						headers: headers,
+					}
+				);
 				setId(response.data.id);
-			})
-			.catch((error) => {
+			} catch (error) {
 				console.log(error);
-			});
+			}
+		};
+
+		fetchPolygonId();
 	}, []);
+
 	return {
 		id,
 	};
