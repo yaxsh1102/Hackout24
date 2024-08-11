@@ -103,7 +103,7 @@ const AppContextProvider: React.FC<{ children: React.ReactNode }> = ({
 		if (localStorage.getItem("token")) {
 			sendRequest();
 		}
-	}, []);
+	}, [user, type]);
 
 	return (
 		<AppContext.Provider
