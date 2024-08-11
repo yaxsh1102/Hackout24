@@ -187,7 +187,6 @@ const Pricing: React.FC = () => {
                 Get started
               </button>
             </div>
-
             {/* Pricing Card */}
             <div className="flex flex-col p-6 mx-auto max-w-lg text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:p-8 dark:bg-[#2d6930] dark:text-white">
               <h3 className="mb-4 text-2xl font-semibold">Half</h3>
