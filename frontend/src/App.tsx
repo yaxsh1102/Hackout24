@@ -6,6 +6,8 @@ import Signin from "./pages/Signin";
 import Profile from "./pages/Profile";
 import Pricing from "./pages/Pricing";
 import CreateProject from "./pages/CreateProject";
+import PaymentGateway from "./pages/PaymentGateway";
+import MyPurchase from "./pages/MyPurchase";
 
 function App() {
 	return (
@@ -18,6 +20,8 @@ function App() {
 				<Route path="/pricing" element={<Pricing />} />
 				<Route path="/profile" element={<Profile />} />
 				<Route path="/create-project" element={<CreateProject />} />
+				<Route path= "/payment-gateway" element={<PaymentGateway/>}/>
+				<Route path="/my-purchase" element={<MyPurchase></MyPurchase>}/>
 			</Routes>
 		</BrowserRouter>
 	);

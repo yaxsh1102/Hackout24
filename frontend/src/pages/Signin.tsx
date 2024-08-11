@@ -19,7 +19,7 @@ export const signInInput = z.object({
 export type signInType = z.infer<typeof signInInput>;
 
 const Signin: React.FC = () => {
-	const { setLoggedIn, setUser } = useContext(AppContext) as Context;
+	const { setLoggedIn, } = useContext(AppContext) as Context;
 	const BACKEND_URL = import.meta.env.VITE_DATABASE_URL;
 	const navigate = useNavigate();
 	const [show, setShow] = useState<boolean>(false);
@@ -83,6 +83,7 @@ const Signin: React.FC = () => {
 				alert(res.data.message);
 			}
 		} catch (error) {
+			console.log(error)
 			alert("Error while sending request");
 		}
 	}
