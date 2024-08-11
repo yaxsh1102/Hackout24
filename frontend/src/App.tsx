@@ -13,7 +13,7 @@ import MyProjects from "./pages/MyProjects";
 import ProjectInfo from "./pages/ProjectInfo";
 
 function App() {
-  return (
+	return (
 		<BrowserRouter>
 			<Routes>
 				<Route path="/" element={<Home />} />
@@ -24,12 +24,12 @@ function App() {
 				<Route path="/profile" element={<Profile />} />
 				<Route path="/setProfile" element={<SetProfile />} />
 				<Route path="/create-project" element={<CreateProject />} />
-				<Route path= "/payment-gateway" element={<PaymentGateway/>}/>
-				<Route path="/my-purchase" element={<MyPurchase></MyPurchase>}/>
+				<Route path="/payment-gateway" element={<PaymentGateway />} />
+				<Route path="/my-purchase" element={<MyPurchase></MyPurchase>} />
 				<Route path="/myprojects" element={<MyProjects />} />
 				<Route path="/myprojects/:projectId" element={<ProjectInfo />} />
 			</Routes>
 		</BrowserRouter>
 	);
-
+}
 export default App;
